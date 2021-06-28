@@ -44,7 +44,7 @@ router.delete('/:id', (req, res) => {
   connection.query('DELETE FROM post WHERE id = ?', [postId], (err) => {
     if (err) {
       console.log(err);
-      res.status(500).send('Error deleting movie');
+      res.status(500).send('Error deleting post');
     } else {
       res.status(200).send('Post successfully deleted');
     }
