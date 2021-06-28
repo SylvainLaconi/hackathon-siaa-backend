@@ -15,4 +15,50 @@ router.get('/', (req, res) => {
   });
 });
 
+router.post('/', (req, res) => {
+  const {
+    title,
+    picture,
+    content,
+    date,
+    location,
+    community_id,
+    user_id,
+    post_category_id,
+  } = req.body;
+  connection.query(
+    'INSERT INTO post (title, picture, content, date, location, community_id, user_id, post_category_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [
+      title,
+      picture,
+      content,
+      date,
+      location,
+      community_id,
+      user_id,
+      post_category_id,
+    ],
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error saving the user');
+      } else {
+        const id = result.insertId;
+        const createdPost = {
+          id,
+          title,
+          picture,
+          content,
+          date,
+          location,
+          community_id,
+          user_id,
+          post_category_id,
+        };
+        res.status(201).send(`${createdPost.title} correctly created`);
+      }
+    }
+  );
+});
+
 module.exports = router;
