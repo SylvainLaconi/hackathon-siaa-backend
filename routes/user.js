@@ -16,4 +16,15 @@ router.get('/', (req, res) => {
   });
 });
 
+router.get('/:id', (req, res) => {
+  const sql = 'SELECT * FROM user WHERE user_id=?';
+  connection.query(sql, [req.params.id], (err, result) => {
+    if (err) {
+      res.status(500).json({ errorMessage: err });
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
 module.exports = router;
