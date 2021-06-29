@@ -4,6 +4,7 @@ const connection = require('../Config');
 
 const router = express.Router();
 
+// Route pour récupèrer la liste des types de posts
 router.get('/', (req, res) => {
   const sql = 'SELECT * FROM post_category';
   connection.query(sql, (err, result) => {
