@@ -4,9 +4,10 @@ const connection = require('../Config');
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  const sql = 'SELECT * FROM post';
-  connection.query(sql, (err, result) => {
+router.get('/:id', (req, res) => {
+  const userId = req.params.id;
+  const sql = 'SELECT COUNT(*) FROM post WHERE user_id=?';
+  connection.query(sql, [userId], (err, result) => {
     if (err) {
       res.status(500).json({ errorMessage: err });
     } else {
