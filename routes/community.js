@@ -4,6 +4,7 @@ const connection = require('../Config');
 
 const router = express.Router();
 
+// Route pour récupèrer la liste des communautés
 router.get('/', (req, res) => {
   const sql = 'SELECT * FROM community';
   connection.query(sql, (err, result) => {

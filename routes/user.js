@@ -4,6 +4,7 @@ const connection = require('../Config');
 
 const router = express.Router();
 
+// Route pour récupèrer la liste des users avec détails
 router.get('/', (req, res) => {
   const sql = 'SELECT * FROM user';
   connection.query(sql, (err, result) => {
