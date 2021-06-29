@@ -7,7 +7,7 @@ const router = express.Router();
 // Route pour récupérer le nombre de posts d'un user
 router.get('/:id', (req, res) => {
   const userId = req.params.id;
-  const sql = 'SELECT COUNT(*) FROM post WHERE user_id=?';
+  const sql = 'SELECT COUNT(id) AS count FROM post WHERE user_id=?';
   connection.query(sql, [userId], (err, result) => {
     if (err) {
       res.status(500).json({ errorMessage: err });
