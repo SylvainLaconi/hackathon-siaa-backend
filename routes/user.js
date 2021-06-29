@@ -41,4 +41,16 @@ router.get('/community/:id', (req, res) => {
   });
 });
 
+// Route pour récupèrer un user par son lastname
+router.get('/lastname/:name', (req, res) => {
+  const sql = `SELECT * FROM user WHERE lastname=?`;
+  connection.query(sql, [req.params.name], (err, result) => {
+    if (err) {
+      res.status(500).json({ errorMessage: err });
+    } else {
+      res.status(200).json(result);
+    }
+  });
+});
+
 module.exports = router;
